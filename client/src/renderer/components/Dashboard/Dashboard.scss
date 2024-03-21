@@ -1,0 +1,106 @@
+.Dashboard {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  &-content {
+    text-align: center;
+    h4 {
+      font-size: 3.6rem;
+      font-weight: 600;
+      margin: 8rem 0 2.4rem;
+    }
+  }
+  &-time {
+    width: 56rem;
+    border: 2px solid #89b502;
+    background-color: rgba(160, 198, 42, 30%);
+    padding: 4rem 5rem 6rem;
+    border-radius: 1rem;
+    &--content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    em{
+      font-size: 2rem;
+      font-style: normal;
+    }
+    p {
+      text-align: center;
+      text-transform: uppercase;
+      font-size: 4.8rem;
+      font-weight: bold;
+      position: relative;
+    }
+    span {
+      display: block;
+      font-size: 1.4rem;
+      font-weight: normal;
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      bottom: -1rem;
+      color: #999;
+      font-weight: bold;
+    }
+  }
+  &-action {
+    display: flex;
+    justify-content: space-evenly;
+    p {
+      font-size: 2.4rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+    }
+    & > div {
+      position: relative;
+      b {
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        bottom: -3rem;
+      }
+    }
+    &--start {
+      .Dashboard-action--circle {
+        background-color: #146b9c;
+      }
+    }
+    &--pause {
+      .Dashboard-action--circle {
+        background-color: #ffc107;
+      }
+    }
+    &--end {
+      .Dashboard-action--circle {
+        background-color: #ef5600;
+      }
+    }
+    &--circle {
+      width: 8rem;
+      height: 8rem;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 0 auto 2rem;
+      img {
+        width: 3rem;
+      }
+    }
+  }
+}
+.sunday {
+  background-color: #ffcccc;
+}
+
+.saturday {
+  background-color: #cce5ff;
+}
+.highlighted {
+  background-color: #ffff99;
+}
+.current-day-start {
+  background-color: #ccffcc;
+}

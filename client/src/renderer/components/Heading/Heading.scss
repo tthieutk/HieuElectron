@@ -1,0 +1,22 @@
+.hdglv2 {
+  border-left: 5px solid var(--green);
+  margin-bottom: 3rem;
+  span {
+    font-size: 2.4rem;
+    font-weight: bold;
+    display: inline-block;
+    padding-left: 2rem;
+  }
+  & + .box-bg {
+    margin: 3rem 0;
+  }
+}
+
+.hdglv3 {
+  font-size: 2.2rem;
+  font-weight: normal;
+  font-weight: bold;
+  text-align: center;
+  margin-top: 3rem;
+  margin-bottom: 3rem;
+}

@@ -1,0 +1,38 @@
+.dayoffs-menu {
+  display: flex;
+  align-items: center;
+  li {
+    font-weight: bold;
+    font-size: 1.8rem;
+    border-bottom: 3px solid transparent;
+    cursor: pointer;
+    transition: 0.3s;
+    &.active {
+      border-bottom: 3px solid orange;
+    }
+    & + li {
+      margin-left: 2rem;
+    }
+    &:hover {
+      opacity: 0.6;
+    }
+  }
+}
+.checkbox {
+  margin-top: 1rem;
+  display: inline-block;
+  input {
+    margin: 0.3rem 1rem 0 0;
+  }
+}
+.clr {
+  &-red {
+    color: red;
+  }
+  &-blue {
+    color: blue;
+  }
+  &-green {
+    color: green;
+  }
+}

@@ -1,0 +1,33 @@
+.box{
+    &-approve{
+        display: flex;
+        align-items: flex-end;
+        border: 5px solid #CECECE;
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        padding: 2rem 2.5rem;
+        box-sizing: border-box;
+        margin: 3.5rem 0 5rem 0;
+        &--content{
+            display: flex;
+            padding: 0 2rem 2rem 0;
+            flex: 1;
+        }
+        &--top{
+            flex: -1
+        }
+        &--center{
+            margin: 2.7rem 0 0 6rem;
+            flex: 1;
+        }
+        &--bottom{
+            flex: -1
+        }
+        &--tag{
+            & + .box-approve--tag{
+                margin-left: 2rem;
+            }
+        }
+    }
+}

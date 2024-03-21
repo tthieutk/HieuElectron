@@ -1,0 +1,45 @@
+.timeCard-edit {
+  .box-group--second {
+    .box-group__item {
+      &:first-child {
+        padding-left: 0;
+      }
+    }
+  }
+  & .box-group {
+    .select-ml0 {
+      margin-left: 0;
+    }
+    @media screen and (min-width: 1200px) {
+    }
+  }
+  .table--01 + .mt-5 {
+    margin-top: 5rem;
+  }
+  &--flex {
+    align-items: center;
+    > * {
+      padding: 0 2rem;
+      box-sizing: border-box;
+      margin: 0 2rem;
+    }
+    > button {
+      width: auto;
+    }
+  }
+}
+.timecard-title {
+  font-size: 1.8rem;
+  margin-top: 2rem;
+}
+.select-ml0 {
+  .select__box.group {
+    margin-left: 0;
+  }
+}
+
+.timecard-head-bar{
+  .wrp-button .btn{
+    margin: 0rem 1rem 0;
+  }
+}

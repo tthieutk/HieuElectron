@@ -1,0 +1,81 @@
+.menberdetails-info{
+    max-width: 40rem;
+    margin: 4rem auto;
+    padding: 0 2rem;
+    &__avatar{
+        text-align: center;
+        cursor: pointer;
+        img{
+            width: 18.2rem;
+            border-radius: 50%;
+        }
+    }
+    &__content{
+        margin: 8rem 3rem;
+        cursor: pointer;
+        ul{
+            li{
+                display: flex;
+                margin-bottom: 1.5rem;
+                p{
+                    font-size: 1.6rem;
+                }
+            }
+        }
+        &__title{
+            width: 10.2rem;
+            font-weight: bold;
+            padding-left: 3rem;
+            position: relative;
+            &::before{
+                content: '';
+                background: url('../../../../assets/icn-id.png') no-repeat;
+                background-size: 100%;
+                width: 1.5rem;
+                height: 1.5rem;
+                position: absolute;
+                left: 0;
+                top:0.6rem;
+            }
+            &--icnname{
+                &::before{
+                    background: url('../../../../assets/icon-user.jpg') no-repeat;
+                    background-size: 100%;
+                }
+            }
+            &--icngroup{
+                &::before{
+                    background: url('../../../../assets/icn-group.png') no-repeat;
+                    background-size: 100%;
+                }
+            }
+            &--icnaddress{
+                &::before{
+                    background: url('../../../../assets/icn-address.png') no-repeat;
+                    background-size: 100%;
+                }
+            }
+            &--icnphone{
+                &::before{
+                    background: url('../../../../assets/icon-phone.jpg') no-repeat;
+                    background-size: 100%;
+                }
+            }
+            &--icnemail{
+                &::before{
+                    background: url('../../../../assets/icon-email.jpg') no-repeat;
+                    background-size: 100%;
+                }
+            }
+            &--icnskype{
+                &::before{
+                    background: url('../../../../assets/icon-skype.jpg') no-repeat;
+                    background-size: 100%;
+                }
+            }
+        }
+    }
+    &__btn{
+        margin-top: 4rem;
+    }
+}

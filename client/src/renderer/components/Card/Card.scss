@@ -1,0 +1,65 @@
+.card {
+  &-time {
+    border-radius: 1rem;
+    border: 2px solid #146b9c;
+    color: #146b9c;
+    font-size: 4rem;
+    width: 16rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    text-align: center;
+    padding: 2rem 2rem 0.2rem;
+    box-sizing: border-box;
+    & > div {
+      position: relative;
+    }
+    small {
+      font-size: 1rem;
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      top: 0rem;
+      //   margin-top: 0.5rem;
+    }
+    &--hour > input ,  &--minute > input {
+        color: #146b9c;
+        width: 100%;
+        border: none;
+        background: transparent;
+        font-size: 4rem;
+        text-align: center;
+    }
+  }
+  &-box {
+    width: auto;
+    display: flex;
+    justify-content: space-between;
+    margin: auto;
+    flex-wrap: wrap;
+    @media screen and (max-width:767px) {
+         
+    }
+    
+    h4 {
+      font-size: 2rem;
+      margin: 0 0 1.5rem;
+    }
+    .btn {
+      margin: 2rem auto 0;
+    }
+    &--center {
+      margin-top: 1rem;
+      width: 20rem;
+        text-align: center;
+        display: flex;
+        justify-items: center;
+        align-items: center;
+        flex-direction: column;
+    }
+    & + .hdglv3{
+      margin-top: 5rem;
+    }
+  }
+
+}

@@ -1,0 +1,28 @@
+.search{
+    font-size: 1.6rem;
+    font-weight: bold;
+    display: flex;
+    &-input{
+        padding-left: 2rem;
+        position: relative;
+        input{
+            border-radius: 2rem;
+            border: 1px solid var(--text-color);
+            padding: 0.6rem 1.6rem;
+            box-sizing: border-box;
+            width: 44vw;
+            background: none;
+        }
+        &::after{
+            content: "";
+            background: url("../../../../assets/icn-search.png") no-repeat;
+            width: 2rem;
+            height: 2rem;
+            position: absolute;
+            right: 1.8rem;
+            top: 1rem;
+            background-size: 100%;
+            cursor: pointer;
+        }
+    }
+}

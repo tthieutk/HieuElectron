@@ -1,0 +1,41 @@
+.item{
+    display: inline-block;
+    margin: 0 1rem 1rem 0;
+    input[type=checkbox]{
+        margin: 9px 5px 0 0;
+    }
+    &-group{
+        margin: 1rem 0;
+        padding: 2rem 1rem 1rem;
+        border: 1px solid #ccc;
+        border-radius: 1rem;
+        position: relative;
+        .btn{
+            margin-top: 0;
+        }
+    }
+    &-title{
+        margin-bottom: 1rem;
+        .btn{
+            position: absolute;
+            top: 0.5rem;
+            right: 0.5rem;
+            width: 3rem;
+            height: 3rem;
+            padding: 0;
+            align-items: center;
+            line-height: 2rem;
+            font-size: 2rem;
+        }
+    }
+}
+.field{
+    &-table{
+        th{
+            width: 18rem;
+        }
+    }
+}
+.err-input{
+    border-color: red;
+}
