@@ -238,6 +238,7 @@ const Field = () => {
             ...checkboxData,
           },
         };
+        console.log(dataWithCheckbox);
         setForms((prevForms) => [...prevForms, dataWithCheckbox]);
         result = [dataWithCheckbox];
       } else {
@@ -259,86 +260,79 @@ const Field = () => {
           },
         ];
       }
-      // function buildCheckboxGroup() {
-      //   return (
-      //     <tr>
-      //       <th>
-      //         <p>
-      //           <span className="text-error">(* required)</span>
-      //         </p>
-      //       </th>
-      //       <td></td>
-      //     </tr>
-      //   );
-      // }
-      // function buildText() {
-      //   return '<div class="text">...</div>';
-      // }
-      // console.log(result);
-      // const outerClassName = Object.keys(result[0])[0];
-      // console.log(outerClassName);
-      // function buildDefault() {
-      //   const requiredValue = result[0].text.required
-      //     ? result[0].text.required.toString()
-      //     : ''; // Chuyển đổi required sang chuỗi
-      //   const fieldLableValue = result[0].text.fieldLable
-      //     ? result[0].text.fieldLable.toString()
-      //     : ''; // Chuyển đổi fieldLable sang chuỗi
-      //   return (
-      //     <tr>
-      //       <th>
-      //         <p>
-      //           {result[0].text.required}
-      //           <span className="text-error">(* required)</span>
-      //         </p>
-      //       </th>
-      //       <td></td>
-      //     </tr>
-      //   );
-      // }
-      console.log(result);
-      const outerClassName = Object.keys(result[0])[0];
-      console.log(result[0][outerClassName].fieldLable);
+
+      const outerClassName = Object.keys(
+        result[0],
+      )[0] as keyof (typeof result)[0];
+      function buildCheckboxGroup() {
+        return (
+          <tr>
+            <th>
+              <p>
+                {Object.keys(result[0])[0][1]}{' '}
+                <span className="text-error">(* required)</span>
+              </p>
+            </th>
+            <td></td>
+          </tr>
+        );
+      }
+      function buildText() {
+        return '<div class="text">...</div>';
+      }
+      function buildNote() {
+        return (
+          '<tr><th><p>' +
+          result[0][outerClassName].fieldLable +
+          (result[0][outerClassName].required
+            ? '<span class="text-error">(*required)</span>'
+            : '') +
+          '</p></th><td>' +
+          (result[0][outerClassName].required
+            ? ''
+            : result[0][outerClassName].fi) +
+          '</td></tr>'
+        );
+      }
+      function buildDefault() {
+        return '';
+      }
+      function buildInput_text() {}
+      function buildCheckbox() {}
+      function buildText_area() {}
+      function buildInput_date() {}
+      function buildDate() {}
+      function buildDate_day() {}
       var content = document
         .getElementsByClassName('field-table')[0]
         .getElementsByTagName('tbody')[0];
       switch (outerClassName) {
         case 'note':
-          content.innerHTML +=
-            '<tr><th><p>' +
-            result[0][outerClassName].fieldLable +
-            (result[0][outerClassName].required
-              ? '<span class="text-error">(*required)</span>'
-              : '') +
-            '</p></th><td>' +
-            (result[0][outerClassName].required
-              ? ''
-              : result[0][outerClassName].fi) +
-            '</td></tr>';
+          content.innerHTML += buildNote();
           break;
         case 'input_text':
-          content.innerHTML += '<div class="item-content">b</div>';
+          content.innerHTML += buildInput_text();
           break;
         case 'checkbox':
-          content.innerHTML += '<div class="item-content">b</div>';
+          content.innerHTML += buildCheckbox();
           break;
         case 'checkbox_group':
           content.innerHTML += buildCheckboxGroup();
           break;
         case 'text_area':
-          content.innerHTML += '<div class="item-content">b</div>';
+          content.innerHTML += buildText_area();
           break;
         case 'input_date':
-          content.innerHTML += '<div class="item-content">b</div>';
+          content.innerHTML += buildInput_date();
           break;
         case 'date':
-          content.innerHTML += '<div class="item-content">b</div>';
+          content.innerHTML += buildDate();
           break;
         case 'date_day':
-          content.innerHTML += '<div class="item-content">b</div>';
+          content.innerHTML += buildDate_day();
           break;
         default:
-          content.innerHTML += buildDefault();
+          content.innerHTML += buildText();
           break;
       }
       setModalOpen(false);
