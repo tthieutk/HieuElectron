@@ -7,12 +7,13 @@ const Field = () => {
   const [isModalOpen, setModalOpen] = useState(false);
   const [required, setRequired] = useState(true);
   const [fieldType, setFieldType] = useState('');
+
   const [forms, setForms] = useState<any[]>([]);
-  const [temp, setTemp] = useState<any[]>([]);
   const [err, setErr] = useState<number>();
   const [inputValues, setInputValues] = useState({
     formName: '',
     fieldLable: '',
+    fieldName: '',
   });
   const handleInputChange = (event: any) => {
     const { name, value } = event.target;
@@ -28,22 +29,33 @@ const Field = () => {
     setFieldType(event.target.value);
   };
   const openModal = () => {
-    setFieldType('text');
     setModalOpen(true);
-  };
-
-  const closeModal = () => {
-    setModalOpen(false);
-    setErr(0);
-    setFieldType('text');
-    setInputValues((prevState) => ({
-      ...prevState,
-      fieldLable: '',
-    }));
     const elements = document.getElementsByClassName('field-content');
     for (let i = 0; i < elements.length; i++) {
       elements[i].innerHTML = '';
     }
+    setErr(0);
+    setInputValues((prevState) => ({
+      ...prevState,
+      fieldLable: '',
+      fieldName: '',
+    }));
+    setFieldType('text');
+  };
+
+  const closeModal = () => {
+    setModalOpen(false);
+    const elements = document.getElementsByClassName('field-content');
+    for (let i = 0; i < elements.length; i++) {
+      elements[i].innerHTML = '';
+    }
+    setErr(0);
+    setInputValues((prevState) => ({
+      ...prevState,
+      fieldLable: '',
+      fieldName: '',
+    }));
+    setFieldType('text');
   };
 
   const [items, setItems] = useState([
@@ -248,6 +260,7 @@ const Field = () => {
             [fieldType]: {
               required: required,
               fieldLable: inputValues.fieldLable,
+              fieldName: inputValues.fieldName,
             },
           },
         ]);
@@ -256,14 +269,35 @@ const Field = () => {
             [fieldType]: {
               required: required,
               fieldLable: inputValues.fieldLable,
+              fieldName: inputValues.fieldName,
             },
           },
         ];
       }
-
       const outerClassName = Object.keys(
         result[0],
       )[0] as keyof (typeof result)[0];
+      console.log(outerClassName);
+      function buildDefault() {
+        return (
+          '<tr><th><div class="tb-from--th">' +
+          result[0][outerClassName].fieldLable +
+          (result[0][outerClassName].required
+            ? ' <span class="txt-red">(*required)</span>'
+            : '') +
+          '</div></th><td><div class="tb-from--td">'
+        );
+      }
+      function buildText() {
+        return '<p>' + result[0][outerClassName].fieldLable + '</p>';
+      }
+      function buildNote() {
+        return (
+          '<p class="text-small">' +
+          result[0][outerClassName].fieldLable +
+          '</p>'
+        );
+      }
       function buildCheckboxGroup() {
         return (
           <tr>
@@ -277,59 +311,51 @@ const Field = () => {
           </tr>
         );
       }
-      function buildText() {
-        return '<div class="text">...</div>';
+      function buildInput_text() {
+        return '<input class="form-input" /></div></td></tr>';
       }
-      function buildNote() {
-        return (
-          '<tr><th><p>' +
-          result[0][outerClassName].fieldLable +
-          (result[0][outerClassName].required
-            ? '<span class="text-error">(*required)</span>'
-            : '') +
-          '</p></th><td>' +
-          (result[0][outerClassName].required
-            ? ''
-            : result[0][outerClassName].fi) +
-          '</td></tr>'
-        );
+      function buildCheckbox() {
+        return result[0][outerClassName].fieldName + '</div></td></tr>';
       }
-      function buildDefault() {
-        return '';
+      function buildText_area() {
+        return result[0][outerClassName].fieldName + '</div></td></tr>';
       }
-      function buildInput_text() {}
-      function buildCheckbox() {}
-      function buildText_area() {}
-      function buildInput_date() {}
-      function buildDate() {}
-      function buildDate_day() {}
+      function buildInput_date() {
+        return result[0][outerClassName].fieldName + '</div></td></tr>';
+      }
+      function buildDate() {
+        return result[0][outerClassName].fieldName + '</div></td></tr>';
+      }
+      function buildDate_day() {
+        return result[0][outerClassName].fieldName + '</div></td></tr>';
+      }
       var content = document
-        .getElementsByClassName('field-table')[0]
+        .getElementsByClassName('tb-from')[0]
         .getElementsByTagName('tbody')[0];
       switch (outerClassName) {
         case 'note':
           content.innerHTML += buildNote();
           break;
         case 'input_text':
-          content.innerHTML += buildInput_text();
+          content.innerHTML += buildDefault() + buildInput_text();
           break;
         case 'checkbox':
-          content.innerHTML += buildCheckbox();
+          content.innerHTML += buildDefault() + buildCheckbox();
           break;
         case 'checkbox_group':
-          content.innerHTML += buildCheckboxGroup();
+          content.innerHTML += buildDefault() + buildCheckboxGroup();
           break;
         case 'text_area':
-          content.innerHTML += buildText_area();
+          content.innerHTML += buildDefault() + buildText_area();
           break;
         case 'input_date':
-          content.innerHTML += buildInput_date();
+          content.innerHTML += buildDefault() + buildInput_date();
           break;
         case 'date':
-          content.innerHTML += buildDate();
+          content.innerHTML += buildDefault() + buildDate();
           break;
         case 'date_day':
-          content.innerHTML += buildDate_day();
+          content.innerHTML += buildDefault() + buildDate_day();
           break;
         default:
           content.innerHTML += buildText();
@@ -341,23 +367,7 @@ const Field = () => {
     }
   };
   const handleSave = () => {
-    console.log(temp);
-    // lặp
-    // const outerClassNames: string[] = [];
-    // temp.forEach((item) => {
-    //   Object.keys(item).forEach((outerClassName) => {
-    //     outerClassNames.push(outerClassName);
-    //   });
-    // });
-    // console.log('Các giá trị của lớp ngoài cùng:', outerClassNames);
-
-    // không lặp
-    // if (temp.length > 0) {
-    //   const outerClassName = Object.keys(temp[0])[0];
-    //   console.log('Tên lớp ngoài cùng:', outerClassName);
-    // } else {
-    //   console.log('Mảng temp không có phần tử.');
-    // }
+    console.log(forms);
   };
 
   return (
@@ -381,10 +391,9 @@ const Field = () => {
       >
         Add field +
       </button>
-      <div className="preview">
+      <div className="">
         <h2 className="hdg-lv2 mt50">Preview:</h2>
-        <div className="preview-content"></div>
-        <table className="field-table">
+        <table className="tb-from">
           <tbody></tbody>
         </table>
       </div>
@@ -456,7 +465,6 @@ const Field = () => {
                     </option>
                   </select>
                   <div className="field-content">
-                    {/* {fieldType == 'text' || fieldType == 'note' || fieldType == 'input-text' ? <><input type="text" placeholder='' /></> : ''} */}
                     {fieldType == 'checkbox' ? '' : ''}
                     {fieldType == 'checkbox_group' ? (
                       <>
@@ -476,6 +484,31 @@ const Field = () => {
                       ''
                     )}
                   </div>
+                </td>
+              </tr>
+              <tr>
+                <th>
+                  <p>
+                    Field Name <span className="text-error">(* required)</span>
+                  </p>
+                </th>
+                <td>
+                  <input
+                    type="text"
+                    className={err == 2 ? 'form-input err-input' : 'form-input'}
+                    onChange={handleInputChange}
+                    value={inputValues.fieldName}
+                    name="fieldName"
+                  />
+                  {err == 2 ? (
+                    <p className="text-small text-error">
+                      * cannot be left blank
+                    </p>
+                  ) : (
+                    <p className="text-small">
+                      * Single word, no spaces. Underscores and dashes allowed
+                    </p>
+                  )}
                 </td>
               </tr>
             </tbody>
